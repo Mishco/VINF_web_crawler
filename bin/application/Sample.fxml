@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLController">
+   <children>
+      <Button fx:id="crawl" layoutX="257.0" layoutY="188.0" mnemonicParsing="false" onAction="#buttonAction" text="Crawl" />
+      <Label layoutX="151.0" layoutY="28.0" prefHeight="25.0" prefWidth="265.0" text="Projekt Vyhladavanie informacii" textAlignment="CENTER">
+         <font>
+            <Font name="Tahoma" size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="209.0" layoutY="163.0" promptText="zadajte URL adresu" />
+      <TextArea fx:id="result" layoutX="14.0" layoutY="236.0" prefHeight="200.0" prefWidth="572.0" promptText="Vysledok" />
+   </children>
+</AnchorPane>
