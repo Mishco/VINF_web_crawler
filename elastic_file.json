@@ -1,0 +1,576 @@
+PUT /bigmovie
+{
+  "mappings": {
+    "film" : {
+      "properties" : {
+        "numFields" : { "type" :   "integer" }
+      }
+    }
+  }
+}
+GET /bigmovie
+
+GET /_nodes/stats?pretty=true
+GET /_cat/indices?v
+
+
+GET /train_deal/_search?id=
+
+
+get /shakespeare/_search?scene
+{
+    
+    "fields": [
+       "speaker":"Henry"
+    ]
+}
+
+
+POST /itemy
+{
+         "mlt" : {
+          "like" : "Once upon a time"
+          
+        }
+}
+POST /itemy/_search
+{
+   "query": {
+      "more_like_this": {
+         "fields": [
+            "coupon_text1", "coupon_text2" 
+         ],
+         "like_text": "eurá",
+         "max_doc_freq": 100, 
+         "min_term_freq": 1,
+         "min_doc_freq": 1
+      }
+   }
+}
+POST /itemy/_search?size=25
+{
+"query":{
+"more_like_this":{
+"fields":["title_dealitem","coupon_text1","coupon_text2"],
+"docs":[{"_id":"AVj6UvNf7_fNVvApLcDN"},{"_id":"AVj6UvNf7_fNVvApLcDM"},{"_id":"AVj6Uuk07_fNVvApLbAQ"},{"_id":"AVj6UvNf7_fNVvApLcDN"},{"_id":"AVj6UvNf7_fNVvApLcDM"}],
+"min_term_freq":1,
+"max_query_terms":12
+}
+}
+}
+
+POST /itemy/_search?size=
+{
+"query":{
+"more_like_this":{
+"fields":["title_dealitem","coupon_text1","coupon_text2"],
+"docs":[{"_id":""},{"_id":""},{"_id":""}],
+"min_term_freq":1,
+"max_query_terms":12
+}
+}
+}
+
+
+
+GET /itemy/_settings
+PUT /itemy/_settings
+{
+    "index" : {
+        "number_of_replicas" : 10
+    }
+}
+PUT /itemy
+{
+    "settings": {
+        "number_of_shards" :   10,
+        "number_of_replicas" : 1
+    }
+}
+
+
+
+
+POST /itemy/_searchsize=100
+{
+                                "query" : {
+                                  "more_like_this" : {
+                                     "fields" : ["title_dealitem", "coupon_text1", "coupon_text2" ],
+                                      "docs": 
+                                          ["{ \"_id\": \"AVjv_Y7J7_fNVvApKm1_\" },", "{ \"_id\": \"AVjv_Y7J7_fNVvApKm1-\" },", "{ \"_id\": \"AVjv_YVH7_fNVvApKlzC\" },", "{ \"_id\": \"AVjv_Y7J7_fNVvApKm1_\" },", "{ \"_id\": \"AVjv_Y7J7_fNVvApKm1-\" },"],
+                                     "min_term_freq" : 1,
+                                     "max_query_terms" : 12
+                                  }
+                                }
+                              }
+
+
+
+POST /_msearch
+{ "index": "itemy", "type": "itemy" }
+{ "query": { "match": {"deal_id":[ "462"  "154" ], "}}}
+
+POST /_msearch 
+{ "index": "itemy", "type": "itemy" }
+{ "query": { "match": {"id":"91045"}}}
+
+POST /_msearch
+{ "index": "itemy", "type": "itemy" } 
+ {"query" : {"match" : {"id": "90109"  } }}
+{ "index": "itemy", "type": "itemy" } 
+ {"query" : {"match" : {"deal_id": "90107"  } }}
+{ "index": "itemy", "type": "itemy" } 
+ {"query" : {"match" : {"deal_id": "78653"  } }}
+{ "index": "itemy", "type": "itemy" } 
+ {"query" : {"match" : {"deal_id": "90109"  } }}
+{ "index": "itemy", "type": "itemy" } 
+ {"query" : {"match" : {"deal_id": "90107"  } }}
+
+
+POST /itemy
+{ "query" : { "match": { "deal_id": "90107" } } }
+
+
+
+get /users_with_items/_search
+
+post /itemy/_search
+{
+    "query": {
+        "match": {
+            "deal_id":"88983"
+        }
+    }    
+}
+POST /itemy/_search
+{
+    "_source": {
+        "deal_id": "88983"
+    }
+}
+
+
+PUT /itemy/_settings
+{
+  "settings": {
+    "index": {
+      "similarity": {
+        "default": {
+          "type": "classic"
+        }
+      }
+    }
+  }
+}
+POST /itemy/_termvectors?pretty=true
+{
+  "fields" : ["text"],
+  "offsets" : true,
+  "payloads" : true,
+  "positions" : true,
+  "term_statistics" : true,
+  "field_statistics" : true
+}
+
+delete /matrixitemov
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////
+POST /vi/lectures
+{
+    "title" : "ElasticSearch", 
+    "date" : "5.10.2015",
+    "length" : 90
+}
+
+GET /vi/lectures/AVeaJcrowqfpB4hhOjcA
+
+GET /vi/lectures/_mapping
+
+
+POST /songs/Johny
+{"mTitle":"I Walk the Line","mArtist":"Johny Cash","mSourceUrl":"http://genius.com/songs/1942195","mLyrics":"I Walk the Line Lyrics   I keep a close watch on this heart of mine\n\u003cbr/\u003eI keep my eyes wide open all the time\n\u003cbr/\u003eI keep the ends out for the tie that binds\n\u003cbr/\u003eBecause you\u0027re mine, I walk the line\n\u003cbr/\u003e\n\u003cbr/\u003eI find it very, very easy to be true\n\u003cbr/\u003eI find myself alone when each day is through\n\u003cbr/\u003eYes, I\u0027ll admit that I\u0027m a fool for you\n\u003cbr/\u003eBecause you\u0027re mine, I walk the line\n\u003cbr/\u003e     As sure as night is dark and day is light \n\u003cbr/\u003eI keep you on my mind both day and night \n\u003cbr/\u003eAnd happiness I\u0027ve known proves that it\u0027s right \n\u003cbr/\u003eBecause you\u0027re mine, I walk the line \n\u003cbr/\u003e\n\u003cbr/\u003eYou\u0027ve got a way to keep me on your side \n\u003cbr/\u003eYou give me cause for love that I can\u0027t hide \n\u003cbr/\u003eFor you I know I\u0027d even try to turn the tide \n\u003cbr/\u003eBecause you\u0027re mine, I walk the line \n\u003cbr/\u003e\n\u003cbr/\u003eI keep a close watch on this heart of mine \n\u003cbr/\u003eI keep my eyes wide open all the time \n\u003cbr/\u003eI keep the ends out for the tie that binds \n\u003cbr/\u003eBecause you\u0027re mine, I walk the line        More on Genius      Mafia III Soundtrack: A Genius Liner Notes Experience   Genius","mSource":"Genius","mFlag":1}
+
+
+
+GET /songs/tmp/AVfJ6U2Y8Yc8OqBwOmOR
+
+GET /vi/songs/_EmilyWells
+
+GET /vi/songs/
+
+GET /twitter/tweet/_search
+
+GET /genius/_search?q=artist:Apocalyptica'
+
+GET /genius/_refresh
+
+
+GET /genius/_stats
+
+GET /genius/_settings
+
+
+GET /_bulk
+
+GET /genius/_bulk
+GET /genius/_search?q=Tinutria~0.8
+GET /genius/Werewolfmuzik/1
+
+GET /genius/X-ZiTe/1
+
+GET /genius/_search
+
+GET /_all
+GET /genius/_mapping
+get /_cluster/state
+
+
+POST /genius/_analyze
+
+nGram
+
+PUT /genius/
+{ "settings": { "number_of_shards": 10 }} 
+
+GET /twitter/_mapping
+
+DELETE /twitter
+DELETE /genius
+
+PUT /genius
+{"settings": {"number_of_shards" : 10}}
+
+POST /twiter/twit/1  
+{
+         
+               "user": "michal",
+               "postDate": "2016-10-20T12:15:27.207Z",
+               "message": "another post"
+             
+}
+POST /twiter/twit/1
+{
+               "user": "michal",
+               "postDate": "2016-10-20T12:15:27.165Z",
+               "message": "trying out Elasticsearch"
+            }
+
+GET /twitter/_search 
+POST /my_index/my_type/_bulk
+{ "index": { "_id": 1 }}
+{ "title": "The quick brown fox" }
+{ "index": { "_id": 2 }}
+{ "title": "The quick brown fox jumps over the lazy dog" }
+{ "index": { "_id": 3 }}
+{ "title": "The quick brown fox jumps over the quick dog" }
+{ "index": { "_id": 4 }}
+{ "title": "Brown fox brown dog" }
+
+GET /_nodes/stats?pretty=true
+GET /_cat/indices?v
+GET /genius/_settings
+GET /genius/_mapping
+GET /genius/_search?q="must" 
+
+GET /genius/Bojoura/1
+
+
+
+POST /pako/1
+{
+    "daco":"by som zjedol",
+    "coze":"to vravis"   
+}
+GET /pako/_highlight
+
+POST /genius/_search
+{
+    "query" : {
+        "match": {
+           "lyric_text": "some"
+        }
+    },
+    "highlight": {
+      "fields": {
+         "lyric_text": {}
+      }      
+    }
+}
+
+
+PUT /pako
+{
+    
+    "highlight" : {
+        "number_of_fragments" : 3,
+        "fragment_size" : 150,
+        "tag_schema" : "styled",
+        "fields" : {
+            "_all" : { "pre_tags" : ["<em>"], "post_tags" : ["    </em>"] },
+             "order" : "score" }
+        }
+    
+
+}
+
+PUT test
+{
+   "settings": {
+      "index": {
+         "analysis": {
+            "char_filter": {
+               "my_html": {
+                  "type": "html_strip"
+               }
+            },
+            "analyzer": {
+               "my_html": {
+                  "tokenizer": "standard",
+                  "char_filter": [
+                     "my_html"
+                  ],
+                  "type": "custom"
+               }
+            }
+         }
+      }
+   }
+}
+
+PUT test/test/_mapping
+{
+   "properties": {
+      "preview_html": {
+         "type": "string",
+         "analyzer": "my_html",
+         "search_analyzer": "standard"
+      }
+   }
+}
+
+PUT test/test/1
+{
+    "preview_html": "<p> p </p>"
+}
+
+POST test/test/_search
+{
+   "query": {
+      "match": {
+         "preview_html": "p"    
+      }
+   },
+   "highlight": {
+      "fields": {
+         "preview_html": {}
+      }
+   }
+}
+
+
+PUT /genius
+ {
+    "settings": {
+      "analysis": {
+        "analyzer": {
+          "my_ngram_analyzer": {
+            "tokenizer": "my_ngram_tokenizer"
+          },
+          "autocomplete": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [
+              "lowercase",
+              "autocomplete_filter"
+            ]
+          }
+        },
+        "filter": {
+          "autocomplete_filter": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 20
+          }
+        },
+        "tokenizer": {
+          "my_ngram_tokenizer": {
+            "type": "nGram",
+            "min_gram": "2",
+            "max_gram": "4",
+            "token_chars": "letter"
+          }
+        }
+      }
+    },
+    "mappings": {
+      "lyric": {
+        "properties": {
+          "artist": {
+            "type": "string",
+            "analyzer": "autocomplete",
+            "boost": 2,
+            "store": true
+
+          },
+          "lyric_text": {
+            "type": "string",
+           
+            "boost": 3,
+            "term_vector": "with_positions_offsets"
+
+          },
+          "title": {
+            "type": "string",
+            "boost": 2,
+            "store": true
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "original_artist": {
+            "type": "string"
+          },
+          "cover_url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "highlight" : {
+        "number_of_fragments" : 10,chrome-extension://lhjgkmllcaadmopgmanpapmpjgmfcfig/index.html#
+        "fragment_size" : 150,
+        "tag_schema" : "styled",
+        "fields" : {
+            "_all" : { "pre_tags" : ["<em>"], "post_tags" : ["    </em>"] },
+             "order" : "score" }
+        },
+        "query" : {
+            "match_all": {
+                "lyric_text" : "string"
+            }
+        
+        }
+  }
+
+
+GET /genius/_search/?size=1000&pretty=1
+
+GET /genius/_search/?size=1000&pretty=1
+
+POST /genius/_search?size=100
+{    "query" : {
+        "match": {
+           "lyric_text": "road"
+        }
+       
+    },
+    "highlight": {
+      "fields": {
+         "lyric_text": {}
+      }      
+    }
+}
+
+
+GET /genius/_search
+{
+    "query": {
+        "match": {
+            "artist": "Johny Cash"
+        }
+    }
+}
+
+
+
+
+
+
+POST /genius/_search
+{
+  "query": {
+    "match": {
+      "artist": {
+        "query": "Jony cas ",
+        "fuzziness": 3,
+        "prefix_length": 2
+      }
+    }
+  }
+}
+
+PUT {"V tomto query sa pokusame najst skladby ktore zaroven napisali viaceri autori, konkretne"}
+POST /genius/_search?pretty
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "artist": "Johny Cash" } },
+        { "match": { "artist": "June Carter" } }
+      ]
+    }
+  }
+}
+POST /genius/_search?pretty 
+{"query":{"bool":{"must":[{"match":{"artist":"Coldplay"}},{"match":{"artist":"June Carter"} }]}}}
+
+GET /pako/_recovery
+
+GET /genius/_mlt?mlt_fields=tag,content&min_doc_freq=1
+
+POST /genius/_search 
+{  "more_like_this" : {
+        "fields" : ["name.first", "name.last"],
+        "like_text" : "text like this one",
+        "min_term_freq" : 1,
+        "max_query_terms" : 12
+    }
+}
+        
+        
+        
+    PUT /vi2 
+{ 
+ "settings": { 
+ "analysis": { 
+ "analyzer": { 
+ "whitespace_asciifolding": { 
+ "tokenizer": "whitespace", 
+ "filter": ["asciifolding"] 
+ } 
+ } 
+ } 
+ } 
+} 
+
+
+POST /vi2/_analyze?analyzer=ngram_asciifoldin
+{
+    "text":"bača kráča pri teľati"    
+}
+
+
+
+
+
+
+
+
+
