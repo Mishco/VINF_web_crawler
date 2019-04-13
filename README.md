@@ -1,6 +1,6 @@
-# Vyhľadávanie informácii - web crawler
+# Web crawler - information retrieval
 
-ElasticSearch - https://www.elastic.co/
+Elasticsearch - https://www.elastic.co/
 
 Fast in-memory search (details)
 
